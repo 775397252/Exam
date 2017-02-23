@@ -44,6 +44,11 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);  //用户管理
     Route::post('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);
     Route::resource('user', 'UserController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
+    //试卷路由管理
+    Route::get('paper/index', ['as' => 'admin.paper.index', 'uses' => 'PaperController@index']);  //用户管理
+    Route::post('paper/index', ['as' => 'admin.paper.index', 'uses' => 'PaperController@index']);
+    Route::resource('paper', 'PaperController', ['names' => ['update' => 'admin.paper.edit', 'store' => 'admin.paper.create']]);
+
 
 });
 

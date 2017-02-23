@@ -79,7 +79,7 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(int $cid)
+    public function create($cid)
     {
         $data = [];
         foreach ($this->fields as $field => $default) {
