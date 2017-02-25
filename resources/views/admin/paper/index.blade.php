@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6 text-right">
             @can('admin.user.create')
-                <a href="/admin/user/create" class="btn btn-success btn-md">
+                <a href="/admin/paper/create" class="btn btn-success btn-md">
                     <i class="fa fa-plus-circle"></i> 添加试卷
                 </a>
             @endcan
@@ -37,7 +37,6 @@
                         <thead>
                         <tr>
                             <th data-sortable="false" class="hidden-sm"></th>
-                            <th class="hidden-sm">试卷id</th>
                             <th class="hidden-sm">试卷名称</th>
                             <th class="hidden-sm">试卷状态</th>
                             <th class="hidden-md">创建日期</th>
@@ -66,7 +65,7 @@
                 <div class="modal-body">
                     <p class="lead">
                         <i class="fa fa-question-circle fa-lg"></i>
-                        确认要删除这个用户吗?
+                        确认要删除这张试卷吗?
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -131,14 +130,15 @@
                             columnDefs: [
                                 {
                                     'targets': -1, "render": function (data, type, row) {
-                                    var row_edit = {{Gate::check('admin.user.edit') ? 1 : 0}};
-                                    var row_delete = {{Gate::check('admin.user.destroy') ? 1 :0}};
+                                    var row_edit = {{Gate::check('admin.paper.edit') ? 1 : 0}};
+                                    var row_delete = {{Gate::check('admin.paper.destroy') ? 1 :0}};
                                     var str = '';
 
                                     //编辑
                                     if (row_edit) {
                                         str += '<a style="margin:3px;" href="/admin/paper/' + row['id'] + '/edit" class="X-Small btn-xs text-success "><i class="fa fa-edit"></i> 编辑</a>';
                                     }
+                                    str += '<a style="margin:3px;" href="/admin/paper/question/' + row['id'] + '" class="X-Small btn-xs text-success "><i class="fa fa-area-chart"></i> 添加试题</a>';
 
                                     //删除
                                     if (row_delete) {

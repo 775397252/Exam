@@ -14,7 +14,7 @@
                 <div class="">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">添加试卷</h3>
+                            <h3 class="panel-title">添加试题</h3>
                         </div>
                         <div class="panel-body">
 
@@ -23,7 +23,7 @@
 
                             <form class="form-horizontal" role="form" method="POST" action="/admin/paper">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                @include('admin.paper._form')
+                                @include('admin.question._form')
                                 <div class="form-group">
                                     <div class="col-md-7 col-md-offset-3">
                                         <button type="submit" class="btn btn-primary btn-md">

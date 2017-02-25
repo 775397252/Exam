@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin\Paper;
+use App\Models\Admin\Question;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
@@ -15,48 +16,21 @@ use App\Models\AppAndroid as Android;
 use App\Models\AppIos as Ios;
 use QrCode;
 
-class PaperController extends Controller
+class QuestionController extends Controller
 {
 
-    public function index(Request $request)
+    public function index($id,Request $request)
     {
-        if ($request->ajax()) {
-            $data = array();
-            $data['draw'] = $request->get('draw');
-            $start = $request->get('start');
-            $length = $request->get('length');
-            $order = $request->get('order');
-            $columns = $request->get('columns');
-            $search = $request->get('search');
-            $data['recordsTotal'] = Paper::count();
-            if (strlen($search['value']) > 0) {
-                $data['recordsFiltered'] = Paper::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search['value'] . '%')
-                        ->orWhere('description', 'like', '%' . $search['value'] . '%');
-                })->count();
-                $data['data'] = Paper::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search['value'] . '%')
-                        ->orWhere('description', 'like', '%' . $search['value'] . '%');
-                })
-                    ->skip($start)->take($length)
-                    ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
-                    ->get();
-            } else {
-                $data['recordsFiltered'] = Paper::count();
-                $data['data'] = Paper::
-                skip($start)->take($length)
-                    ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
-                    ->get();
-            }
-            return response()->json($data);
-        }
-        return view('admin.paper.index');
+        $paper=new Paper();
+        $question=new Question();
+        $all=$question->where('paper_id',$id)->paginate(15);
+        return view('admin.question.index',compact('all','id'));
     }
 
     public function create()
     {
         $data = [];
-        return view('admin.paper.create', $data);
+        return view('admin.question.create', $data);
     }
 
 

@@ -33,12 +33,10 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::post('permission/index', ['as' => 'admin.permission.index', 'uses' => 'PermissionController@index']); //查询
     Route::resource('permission', 'PermissionController', ['names' => ['update' => 'admin.permission.edit', 'store' => 'admin.permission.create']]);
 
-
     //角色管理路由
     Route::get('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
     Route::post('role/index', ['as' => 'admin.role.index', 'uses' => 'RoleController@index']);
     Route::resource('role', 'RoleController', ['names' => ['update' => 'admin.role.edit', 'store' => 'admin.role.create']]);
-
 
     //用户管理路由
     Route::get('user/index', ['as' => 'admin.user.index', 'uses' => 'UserController@index']);  //用户管理
@@ -48,6 +46,10 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('paper/index', ['as' => 'admin.paper.index', 'uses' => 'PaperController@index']);  //用户管理
     Route::post('paper/index', ['as' => 'admin.paper.index', 'uses' => 'PaperController@index']);
     Route::resource('paper', 'PaperController', ['names' => ['update' => 'admin.paper.edit', 'store' => 'admin.paper.create']]);
+    //试题管理
+    Route::get('paper/question/{id}', 'QuestionController@index')->name('admin.question.index');
+    Route::get('paper/question/{id}/create', 'QuestionController@create')->name('admin.question.create');
+
 
 
 });
