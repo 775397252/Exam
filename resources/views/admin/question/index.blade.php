@@ -44,13 +44,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($all as $k=>$v)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>
+                                <th scope="row">{{$k}}</th>
+                                <td>{{$v->title}}</td>
+                                <td>{{$v->type}}</td>
+                                <td>{{$v->score}}</td>
+                                <td>{{$v->item}}</td>
+                                <td>{{$v->true_item}}</td>
                                 <td>
                                     <a style="margin:3px;" href="/admin/paper/3/edit" class="X-Small btn-xs text-success ">
                                         <i class="fa fa-edit"></i> 编辑
@@ -60,9 +61,12 @@
                                     </a>
                                 </td>
                             </tr>
+                            @endforeach
 
                             </tbody>
                         </table>
+                        {{ $all->links() }}
+
                     </div>
                 </div>
             </div>

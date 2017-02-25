@@ -21,7 +21,7 @@
                             @include('admin.partials.errors')
                             @include('admin.partials.success')
 
-                            <form class="form-horizontal" role="form" method="POST" action="/admin/paper">
+                            <form class="form-horizontal" role="form" method="POST" action="/admin/paper/question/{{$id}}/store">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 @include('admin.question._form')
                                 <div class="form-group">
@@ -41,3 +41,54 @@
         </div>
     </div>
 @stop
+@section('js')
+    <script>
+        function copy_self(p){
+            var parent,parent_clone
+            parent= p.parent()
+            var some=Math.random()
+            var s = "    <div class='form-group'>\
+        <label for='tag' class='col-md-3 control-label'>选项</label>\
+                <div class='col-md-5'>\
+                <input type='text' class='form-control' name='item["+(some)+"]' autofocus>\
+        </div>\
+        <label class='radio-inline'>\
+                <input type='checkbox' name='true_item["+(some)+"]'  value='1'> 设为答案\
+                </label>\
+                <input type='button' onclick='copy_self($(this))' class='btn-primary btn btn-md fa fa-plus-circle' value='添加'>\
+                <input type='button' onclick=' destroy_self($(this))' class='btn-primary btn btn-md fa fa-plus-circle' value='删除'>";
+
+            //parent_clone= p.parent().clone();
+            parent.after(s)
+        }
+
+        function destroy_self(p){
+            var parent,cou
+            cou=$('#scount').children().length;
+            if(cou==1){
+                alert('请至少留一个选项')
+                return false;
+            }
+            parent= p.parent()
+            parent.remove()
+        }
+        $(function(){
+            var parent_clone
+            parent_clone= $('#scount');
+            var some=Math.random()
+            var s = "    <div class='form-group'>\
+        <label for='tag' class='col-md-3 control-label'>选项</label>\
+                <div class='col-md-5'>\
+                <input type='text' class='form-control' name='item["+(some)+"]' autofocus>\
+        </div>\
+        <label class='radio-inline'>\
+                <input type='checkbox' name='true_item["+(some)+"]'  value='1'> 设为答案\
+                </label>\
+                <input type='button' onclick='copy_self($(this))' class='btn-primary btn btn-md fa fa-plus-circle' value='添加'>\
+                <input type='button' onclick=' destroy_self($(this))' class='btn-primary btn btn-md fa fa-plus-circle' value='删除'>";
+
+            //parent_clone= p.parent().clone();
+            parent_clone.html(s)
+        })
+    </script>
+    @stop

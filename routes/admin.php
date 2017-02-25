@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     //试题管理
     Route::get('paper/question/{id}', 'QuestionController@index')->name('admin.question.index');
     Route::get('paper/question/{id}/create', 'QuestionController@create')->name('admin.question.create');
+    Route::post('paper/question/{id}/store', 'QuestionController@store')->name('admin.question.store');
 
 
 

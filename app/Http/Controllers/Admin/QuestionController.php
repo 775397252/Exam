@@ -27,22 +27,25 @@ class QuestionController extends Controller
         return view('admin.question.index',compact('all','id'));
     }
 
-    public function create()
+    public function create($id)
     {
         $data = [];
-        return view('admin.question.create', $data);
+        return view('admin.question.create', compact('id'));
     }
 
 
-    public function store(Request $request)
+    public function store($id,Request $request)
     {
-        $paper = new Paper();
-        $paper->title=$request->get('title');
-        $paper->description=$request->get('description');
-        $paper->status=$request->get('status');
-        $paper->creator=Auth::id();
-        $paper->save();
-        return redirect('/admin/paper')->withSuccess('添加成功！');
+       // dd($request->all());
+        $question=new Question();
+        $question->paper_id=$id;
+        $question->title=$request->get('title');
+        $question->type=$request->get('type');
+        $question->score=$request->get('score');
+        $question->item=json_encode($request->get('item'));
+        $question->true_item=json_encode($request->get('true_item'));
+        $question->save();
+        return redirect()->route('admin.question.index', ['id'=>$id])->withSuccess('添加成功！');
     }
 
 
