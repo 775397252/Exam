@@ -49,35 +49,30 @@ class QuestionController extends Controller
     }
 
 
-    public function show($id)
-    {
-        //
-    }
-
-
     public function edit($id)
     {
-        $paper = Paper::find((int)$id);
-        if (!$paper) return redirect('/admin/paper')->withErrors("找不到该试卷!");
-        $data['id'] = (int)$id;
-        return view('admin.paper.edit', compact('paper','id'));
+        $question = Question::find((int)$id);
+        if (!$question) return redirect('/admin/question')->withErrors("找不到该问题!");
+        return view('admin.question.edit', compact('question','id'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $paper = Paper::find((int)$id);
-        $paper->title=$request->get('title');
-        $paper->description=$request->get('description');
-        $paper->status=$request->get('status');
-        $paper->save();
-        return redirect('/admin/paper')->withSuccess('修改成功！');
+        $question= Question::find((int)$id);
+        $question->title=$request->get('title');
+        $question->type=$request->get('type');
+        $question->score=$request->get('score');
+        $question->item=json_encode($request->get('item'));
+        $question->true_item=json_encode($request->get('true_item'));
+        $question->save();
+        return redirect()->route('admin.question.index', ['id'=>$id])->withSuccess('编辑成功！');
     }
 
 
     public function destroy($id)
     {
-        $paper = Paper::find((int)$id);
+        $paper = Question::find((int)$id);
         if ($paper) {
             $paper->delete();
         }

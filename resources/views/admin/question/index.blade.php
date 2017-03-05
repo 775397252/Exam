@@ -38,8 +38,6 @@
                                 <th>标题</th>
                                 <th>类型</th>
                                 <th>分值</th>
-                                <th>选项</th>
-                                <th>正确选项</th>
                                 <th>操作</th>
                             </tr>
                             </thead>
@@ -50,19 +48,16 @@
                                 <td>{{$v->title}}</td>
                                 <td>{{$v->type}}</td>
                                 <td>{{$v->score}}</td>
-                                <td>{{$v->item}}</td>
-                                <td>{{$v->true_item}}</td>
                                 <td>
-                                    <a style="margin:3px;" href="/admin/paper/3/edit" class="X-Small btn-xs text-success ">
+                                    <a style="margin:3px;" href="/admin/paper/question/{{$v->id}}/edit" class="X-Small btn-xs text-success ">
                                         <i class="fa fa-edit"></i> 编辑
                                     </a>
-                                    <a style="margin:3px;" href="#" attr="3" class="delBtn X-Small btn-xs text-danger">
+                                    <a style="margin:3px;" href="/admin/paper/question/{{$v->id}}/destroy" attr="3" class="delBtn X-Small btn-xs text-danger">
                                         <i class="fa fa-times-circle"></i> 删除
                                     </a>
                                 </td>
                             </tr>
                             @endforeach
-
                             </tbody>
                         </table>
                         {{ $all->links() }}

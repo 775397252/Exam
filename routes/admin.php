@@ -50,6 +50,9 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('paper/question/{id}', 'QuestionController@index')->name('admin.question.index');
     Route::get('paper/question/{id}/create', 'QuestionController@create')->name('admin.question.create');
     Route::post('paper/question/{id}/store', 'QuestionController@store')->name('admin.question.store');
+    Route::get('paper/question/{id}/edit', 'QuestionController@edit')->name('admin.question.edit');
+    Route::get('paper/question/{id}/destroy', 'QuestionController@destroy')->name('admin.question.destroy');
+    Route::post('paper/question/{id}/update', 'QuestionController@update')->name('admin.question.update');
 
 
 

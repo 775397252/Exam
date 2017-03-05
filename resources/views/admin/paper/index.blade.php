@@ -114,7 +114,7 @@
                             serverSide: true,
                             ajax: {
                                 url: '/admin/paper/index',
-                                type: 'POST',
+                                type: 'get',
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                                 }

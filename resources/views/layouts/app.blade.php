@@ -9,9 +9,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" type="text/css" href="{{asset('front/css/bootstrap-3.3.4.css')}}">
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
+    <link href="{{asset('front/css/index.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Scripts -->
     <script>
@@ -21,7 +23,6 @@
     </script>
 </head>
 <body>
-    <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -77,11 +78,14 @@
                 </div>
             </div>
         </nav>
+<div>
+        <div class="col-md-10">
+                @yield('content')
+        </div>
+        </div>
+        <script src="{{asset('front/js/jquery-1.9.1.min.js')}}"></script>
+        <script src="{{asset('front/js/bootstrap.js')}}"></script>
+    @yield('js')
 
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
 </body>
 </html>

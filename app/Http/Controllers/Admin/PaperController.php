@@ -31,11 +31,11 @@ class PaperController extends Controller
             $data['recordsTotal'] = Paper::count();
             if (strlen($search['value']) > 0) {
                 $data['recordsFiltered'] = Paper::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search['value'] . '%')
+                    $query->where('title', 'LIKE', '%' . $search['value'] . '%')
                         ->orWhere('description', 'like', '%' . $search['value'] . '%');
                 })->count();
                 $data['data'] = Paper::where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search['value'] . '%')
+                    $query->where('title', 'LIKE', '%' . $search['value'] . '%')
                         ->orWhere('description', 'like', '%' . $search['value'] . '%');
                 })
                     ->skip($start)->take($length)
