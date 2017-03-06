@@ -11,17 +11,23 @@
                     <div style="width: 100%;height: 50px;font-size:15px;color: #000;line-height: 50px;padding-left: 20px;">
                         <div style="color:#FFF;background: red;width: 22px;height: 22px;border-radius:11px;line-height:22px;font-size:13px; text-align: center;"
                              class="glyphicon glyphicon-map-marker"></div>
-                        [单选题]
+                        @if($first->type==1)
+                            [单选题]
+                        @else
+                            [多选题]
+                        @endif
                     </div>
                 </div>
                 <div style="width: 100%;height:auto;display: inline-block;background:#FFF;">
                     <div style="width: 100%;height: 90%;padding:20px 20px 0px 60px;">
                         <!--试题区域-->
                         <ul class="list-unstyled question" >
-                            <li class="question_title"><strong>第 1 题 </strong>下丘脑与腺垂体之间主要通过下列哪条途径联系？ </li>
-                            <li class="question_info" onclick="clickTrim(this)" id="111"><input name="item" type="checkbox" value="A">&nbsp;A.神经纤维</li>
-                            <li class="question_info" onclick="clickTrim(this)" id="1121"><input name="item" type="checkbox" value="A">&nbsp;A.神经纤维</li>
-                            <li class="question_info" onclick="clickTrim(this)" id="11221"><input name="item" type="checkbox" value="A">&nbsp;A.神经纤维</li>
+                            <li class="question_title"><strong>{{$first->title}}</strong> </li>
+                            @foreach(json_decode($first->item) as $k=>$v)
+                            <li class="question_info" onclick="clickTrim('{{$k}}')">
+                                <input name="item" type="radio" id="{{$k}}" value="{{$k}}">&nbsp;&nbsp;{{$v}}
+                            </li>
+                            @endforeach
                           </ul>
                         <!--考题的操作区域-->
                         <div class="operation" style="margin-top: 20px;">
@@ -40,16 +46,15 @@
 
 @section('js')
     <script>
-        function clickTrim(source){
-            var id = source.id;
-            if($("#"+id).find("input").is(':checked')) {
-                if(!$("#"+id).find("input").is(':radio')){
-                    $("#"+id).find("input").prop("checked",false);
+        function clickTrim(id){
+            if($("#"+id).is(':checked')) {
+                if(!$("#"+id).is(':radio')){
+                    $("#"+id).prop("checked",false);
                 }
-            }else {
-                $("#"+id).find("input").prop("checked","checked");
+            }else{
+
+                $("#"+id).prop("checked","checked");
             }
         }
-
     </script>
 @stop

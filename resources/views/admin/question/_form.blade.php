@@ -15,12 +15,13 @@
     <label for="tag" class="col-md-3 control-label">试题类型</label>
     <div class="col-md-5">
         <select name="type" id="">
-            <option value="1" @if($question['type']==1) selected @endif>单选题</option>
-            <option value="2"  @if($question['type']==2) selected @endif>多选题</option>
+            <option value="1" @if(isset($question['type'])&&$question['type']==1) selected @endif>单选题</option>
+            <option value="2"  @if(isset($question['type'])&&$question['type']==2) selected @endif>多选题</option>
         </select>
     </div>
 </div>
 <div id="scount">
+    @if(isset($question['item']))
     @foreach(json_decode($question['item']) as $k=>$v)
         <div class='form-group'>
             <label for='tag' class='col-md-3 control-label'>选项</label>
@@ -36,6 +37,7 @@
             <input type='button' onclick=' destroy_self($(this))' class='btn-primary btn btn-md fa fa-plus-circle' value='删除'>
         </div>
     @endforeach
+    @endif
 </div>
 
 

@@ -66,7 +66,7 @@ class QuestionController extends Controller
         $question->item=json_encode($request->get('item'));
         $question->true_item=json_encode($request->get('true_item'));
         $question->save();
-        return redirect()->route('admin.question.index', ['id'=>$id])->withSuccess('编辑成功！');
+        return redirect()->route('admin.papaer.index')->withSuccess('编辑成功！');
     }
 
 

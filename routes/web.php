@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::group(['namespace' => 'Front'], function()
 {
-    Route::get('/answer', 'AnswerController@index');
+    Route::get('/answer/{id}', 'AnswerController@index');
     Route::get('/paper', 'AnswerController@paperList');
     Route::get('/rank', 'AnswerController@rank');
 
