@@ -18,35 +18,49 @@
                         @endif
                     </div>
                 </div>
+            <form action="">
                 <div style="width: 100%;height:auto;display: inline-block;background:#FFF;">
                     <div style="width: 100%;height: 90%;padding:20px 20px 0px 60px;">
                         <!--试题区域-->
-                        <ul class="list-unstyled question" >
-                            <li class="question_title"><strong>{{$first->title}}</strong> </li>
+                            <strong>{{$first->title}}</strong>
                             @foreach(json_decode($first->item) as $k=>$v)
-                            <li class="question_info" onclick="clickTrim('{{$k}}')">
-                                <input name="item" type="radio" id="{{$k}}" value="{{$k}}">&nbsp;&nbsp;{{$v}}
-                            </li>
+                                @if($first->type==1)
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="item" value="{{$k}}">
+                                        {{$v}}
+                                    </label>
+                                </div>
+                            @else
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="item" value="{{$k}}">
+                                        {{$v}}
+                                    </label>
+                                </div>
+                            @endif
                             @endforeach
-                          </ul>
                         <!--考题的操作区域-->
                         <div class="operation" style="margin-top: 20px;">
                             <div class="text-right" style="margin-right: 20px;">
                                 <div class="form-group" style="color: #FFF;">
-                                    <button class="btn btn-success" id="submitQuestions">提交试卷</button>
-                                    <button class="btn btn-info" id="nextQuestion">下一题</button>
+                                    @if(isset($over)&&$over==1)
+                                    <input class="btn btn-success" id="submitQuestions" onclick="getanswer()">提交试卷</input>
+                                    @endif
+                                    <input class="btn btn-info" id="nextQuestion" value="下一题" type="submit"/>
                                 </div>
                             </div>
                         </div>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 @stop
 
 @section('js')
     <script>
-        function clickTrim(id){
+        function getanswer(){
             if($("#"+id).is(':checked')) {
                 if(!$("#"+id).is(':radio')){
                     $("#"+id).prop("checked",false);
