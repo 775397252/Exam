@@ -29,7 +29,7 @@
 @include('admin.partials.success')
 <div class="login-box">
     <div class="login-logo">
-        <a><b>Big</b>Pang</a>
+        <a>考试管理系统</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

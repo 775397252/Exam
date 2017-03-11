@@ -11,13 +11,6 @@
 
 ## 截图
 
-## ![laravel rbac](http://o7ze7op4t.bkt.clouddn.com/QQ20161111-1.png)
-
-
-
-![rbac](http://o7ze7op4t.bkt.clouddn.com/QQ20161111-2.png)
-
-
 
 ## 安装
 
@@ -34,4 +27,4 @@
 ## 使用
 - 用户管理中的权限管理添加顶级权限
    比如用户管理, 'admin.user' 只有两段的做左边的菜单栏, 列表页统一为'admin.XXXX.index'
-   具体部分可以参照路由与源码,也可以QQ我176608671
+   具体部分可以参照路由与源码
