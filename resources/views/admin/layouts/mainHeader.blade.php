@@ -5,7 +5,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Big</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Big</b>Pang</span>
+      <span class="logo-lg">考试系统后台</span>
     </a>
 
     <!-- Header Navbar -->

@@ -18,14 +18,15 @@
                         </a>
                     </h3>
                     <p>
-                        <a href="{{url('answer',[$v->id])}}" class="btn btn-danger">查看排行榜</a>
+                        <a href="{{url('rank',[$v->id])}}" class="btn btn-danger">查看排行榜</a>
+                        @if($v->show)
                         <a href="{{url('answer',[$v->id])}}" class="btn btn-danger">开始考试</a>
+                            @endif
                     </p>
                 </div>
             </div>
         </div>
 @endforeach
-
 
     </div>
     {{ $all->links() }}
@@ -33,5 +34,8 @@
 
 @section('js')
             <script>
+                @if(isset($_GET['error']))
+                    alert("{{$_GET['error']}}")
+                @endif
             </script>
 @stop

@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="projects-header page-header">
-        <h2>试卷分数表</h2>
+        <h2>试卷排行榜</h2>
     </div>
     <div class="bs-example" data-example-id="simple-table">
         <table class="table">
@@ -15,30 +15,21 @@
                 <th>#</th>
                 <th>姓名</th>
                 <th>分数</th>
-                <th>时间</th>
+                <th>邮箱</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($info as $k=>$v)
             <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <th scope="row">{{$k+1}}</th>
+                <td>{{$v->name}}</td>
+                <td>{{$v->score}}</td>
+                <td>{{$v->email}}</td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
+        <a  class="btn btn-primary" href="/paper">回到首页</a>
     </div>
 @stop
 
