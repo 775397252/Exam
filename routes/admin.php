@@ -54,6 +54,12 @@ Route::group(['middleware' => ['auth:admin', 'menu', 'authAdmin']], function () 
     Route::get('paper/question/{id}/destroy', 'QuestionController@destroy')->name('admin.question.destroy');
     Route::post('paper/question/{id}/update', 'QuestionController@update')->name('admin.question.update');
 
+    Route::get('/student/index', 'StudentController@index')
+        ->name('admin.student.index');
+    Route::get('/student/{id}/destroy', 'StudentController@destroy')->name('admin.student.destroy');
+
+    Route::resource('student', 'StudentController', ['names' => ['update' => 'admin.student.edit', 'store' => 'admin.student.create']]);
+
 
 
 });

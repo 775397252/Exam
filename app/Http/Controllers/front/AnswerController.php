@@ -105,14 +105,16 @@ class AnswerController extends Controller
     public function rank($id)
     {
         //试卷所有用户
+        $new=[];
         $user=UserAnswer::where('paper_id',$id)->get();
         foreach($user as $k=>$v){
-            $new[$v->uid]=UserAnswer::where('uid',$v->uid)->where('paper_id',$id)->sum('score');
+            $new[$v->uid]=(int)UserAnswer::where('uid',$v->uid)->where('paper_id',$id)->sum('score');
         }
+        arsort ($new);
         $info=[];
         foreach($new as $k=>$v){
 
-                $temp=User::where('id',$k)->first();
+            $temp=User::where('id',$k)->first();
             $temp->score=$v;
             $info[]=$temp;
         }
