@@ -33,18 +33,26 @@
             <!-- Optionally, you can add icons to the links -->
 
             <li><a href="/admin"><i class="fa fa-dashboard"></i> <span>控制面板</span></a></li>
-            <?php $comData=Request::get('comData_menu'); ?>
-            @foreach($comData['top'] as $v)
-                <li class="treeview  @if(in_array($v['id'],$comData['openarr'])) active @endif">
-                    <a href="#"><i class="fa {{ $v['icon'] }}"></i> <span>{{$v['label']}}</span> <i
-                                class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="treeview-menu">
-                        @foreach($comData[$v['id']] as $vv)
-                            <li @if(in_array($vv['id'],$comData['openarr'])) class="active" @endif><a href="{{URL::route($vv['name'])}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>{{$vv['label']}}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-            @endforeach
+            <li class="treeview">
+                <a href="#"><i class="fa fa-users"></i> <span>权限管理</span> <i class="fa fa-angle-left pull-right"> </i></a>
+                <ul class="treeview-menu" style="display: none;">
+                    <li class="active"><a href="http://192.168.11.111/admin/permission/index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>权限列表</a></li>
+                    <li><a href="http://192.168.11.111/admin/role/index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>角色列表</a></li>
+                    <li><a href="http://192.168.11.111/admin/user/index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>用户管理</a></li>
+                </ul>
+            </li>
+            <li class="treeview  ">
+                <a href="#"><i class="fa fa-newspaper-o"></i> <span>试卷管理</span> <i class="fa fa-angle-left pull-right"> </i></a>
+                <ul class="treeview-menu">
+                    <li><a href="http://192.168.11.111/admin/paper/index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>试卷列表</a></li>
+                </ul>
+            </li>
+            <li class="treeview  ">
+                <a href="#"><i class="fa fa-child"></i> <span>学生管理</span> <i class="fa fa-angle-left pull-right"> </i></a>
+                <ul class="treeview-menu">
+                    <li><a href="http://192.168.11.111/admin/student/index">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-circle-o"></i>学生列表</a></li>
+                </ul>
+            </li>
 
         </ul>
         <!-- /.sidebar-menu -->
